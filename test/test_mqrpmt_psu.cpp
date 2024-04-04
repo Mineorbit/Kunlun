@@ -176,14 +176,17 @@ int main()
 
     std::getline(std::cin, party);
     PrintSplitLine('-'); 
-
+    std::cout << "Give IP to bind to ==>";
+    std::string ip;
+    std::getline(std::cin,ip);
+    PrintSplitLine('-');
     if(party == "sender"){
-        NetIO client("client", "127.0.0.1", 8080);        
+        NetIO client("client", ip, 8080);        
         mqRPMTPSU::Send(client, pp, testcase.vec_X);
     } 
 
     if(party == "receiver"){
-        NetIO server("server", "", 8080);
+        NetIO server("server", ip, 8080);
         std::vector<block> vec_union_real = mqRPMTPSU::Receive(server, pp, testcase.vec_Y);
         std::set<block, BlockCompare> set_diff_result = 
             ComputeSetDifference(vec_union_real, testcase.vec_union);  
