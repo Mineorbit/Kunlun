@@ -9,10 +9,11 @@ inline size_t BN_BYTE_LEN;    // the byte length of bigint
 inline size_t INT_BYTE_LEN; 
 //inline size_t FIELD_BYTE_LEN;  // each scalar field element is 256 bit 
 
-BN_CTX *bn_ctx[NUMBER_OF_THREADS]; // define ctx for ecc operations
+BN_CTX *bn_ctx; // define ctx for ecc operations
 
 
 void BN_Initialize(){
+    *bn_ctx = new BN_CTX[NUMBER_OF_THREADS];
     for(auto i = 0; i < NUMBER_OF_THREADS; i++){
         bn_ctx[i] = BN_CTX_new();
         if (bn_ctx[i] == nullptr) std::cerr << "bn_ctx initialize fails" << std::endl;
