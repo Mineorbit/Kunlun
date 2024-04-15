@@ -13,7 +13,7 @@ BN_CTX *bn_ctx; // define ctx for ecc operations
 
 
 void BN_Initialize(){
-    *bn_ctx = new BN_CTX[NUMBER_OF_THREADS];
+    bn_ctx = new BN_CTX[NUMBER_OF_THREADS];
     for(auto i = 0; i < NUMBER_OF_THREADS; i++){
         bn_ctx[i] = BN_CTX_new();
         if (bn_ctx[i] == nullptr) std::cerr << "bn_ctx initialize fails" << std::endl;
