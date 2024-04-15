@@ -9,7 +9,7 @@ inline size_t BN_BYTE_LEN;    // the byte length of bigint
 inline size_t INT_BYTE_LEN; 
 //inline size_t FIELD_BYTE_LEN;  // each scalar field element is 256 bit 
 
-inline BN_CTX *bn_ctx[NUMBER_OF_THREADS]; // define ctx for ecc operations
+BN_CTX *bn_ctx[NUMBER_OF_THREADS]; // define ctx for ecc operations
 
 
 void BN_Initialize(){
