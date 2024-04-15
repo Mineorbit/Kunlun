@@ -12,6 +12,21 @@
 
 /*
 ** implement cwPRF-based PSI
+** it is insteresting that cwPRF-based mqPMT does not readily admit Bloom filter optimization
+** it depends on the interpreation of the encoding
+
+** in any OPRF-based PSI protocol, for correctness it suffices to truncate the output length of F to \lambda+log(n1)+log(n2) 
+** Reference [CRYPTO 2019 - PRTY - SpOT Lightweight PSI from Sparse OT Extension]
+** !!! Warning: the truncatation optimization only works when the output is random over {0,1}^l since the above analysis is made in this setting
+** one should be careful when the output is random over G, which is sparse over {0,1}^l
+** in this case: the most prudent manner is to hash the output to {0,1}^l via a CRHF
+
+** when |G| is not too sparse over {0,1}^l for some l, e.g. the case of curve25519, one could loosely deem that the compressed form is random over {0,1}^l
+** LSB of g^{ab} (resp. x-coordinate) are indistinguishable from a random bit-string in number-theoreric (resp. EC) group 
+** Reference [EUROCRYPT 2009 - Optimal Randomness Extraction from a Diffie-Hellman Element]
+
+** actually, to ensure correctness, the essence is to identify an efficient CRHF from F's output to {0,1}^l
+** truncation is argubly the simplest method, in this case the collision resistance stems from pseduorandom randomness
 */
 
 namespace cwPRFPSI{
