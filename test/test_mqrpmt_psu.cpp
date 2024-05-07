@@ -196,6 +196,6 @@ int main()
     }
 
     CRYPTO_Finalize();   
-    
+    sleep(10000000000);    
     return 0; 
 }
