@@ -30,7 +30,7 @@ public:
 
 	std::string address;
 	int port;
-
+	ulong total = 0;
 	NetIO(std::string party, std::string address, int port); 
 
 	void SetNodelay();
@@ -229,11 +229,13 @@ void NetIO::ReceiveDataInternal(const void *data, size_t LEN)
 void NetIO::SendBytes(const void* data, size_t LEN) 
 {
 	SendDataInternal(data, LEN); 
+	total += LEN;
 }
 
 void NetIO::ReceiveBytes(void* data, size_t LEN) 
 {
-	ReceiveDataInternal(data, LEN); 
+	ReceiveDataInternal(data, LEN);
+	total += LEN;
 }
 
 void NetIO::SendBlocks(const block* data, size_t LEN) 
