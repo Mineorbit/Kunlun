@@ -183,7 +183,7 @@ int main()
     if(party == "sender"){
         NetIO client("client", ip, 8080);        
         mqRPMTPSU::Send(client, pp, testcase.vec_X);
-        std::cout << "TOTAL COMM: "<< server.total << "\n"; 
+        std::cout << "TOTAL COMM: "<< client.total << "\n"; 
     } 
 
     if(party == "receiver"){
