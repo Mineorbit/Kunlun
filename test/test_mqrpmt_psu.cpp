@@ -183,6 +183,7 @@ int main()
     if(party == "sender"){
         NetIO client("client", ip, 8080);        
         mqRPMTPSU::Send(client, pp, testcase.vec_X);
+        std::cout << "TOTAL COMM: "<< server.total << "\n"; 
     } 
 
     if(party == "receiver"){
@@ -193,6 +194,7 @@ int main()
 
         double error_probability = set_diff_result.size()/double(testcase.vec_union.size()); 
         std::cout << "mqRPMT-based PSU test succeeds with probability " << (1 - error_probability) << std::endl; 
+        std::cout << "TOTAL COMM: "<< server.total << "\n"; 
     }
 
     CRYPTO_Finalize();   
