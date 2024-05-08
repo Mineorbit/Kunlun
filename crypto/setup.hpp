@@ -26,6 +26,7 @@ void CRYPTO_Initialize()
 
     PrintSplitLine('-'); 
     std::cout << "GLOBAL ENVIROMENT INFO >>>" << std::endl;
+    
     std::cout << "THREAD NUM = " << NUMBER_OF_THREADS << std::endl;
 
     std::cout << "EC Curve ID = " << curve_id << std::endl;
